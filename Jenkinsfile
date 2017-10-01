@@ -1,7 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Shutdown Server1') {
+    stage('Confirm Start') {
+      steps {
+          input(message: 'Please confirm deployment', id: 'ConfirmDeployStart', ok: 'Yes?')        
+      }
+    }    
+    stage('Shutdown App Servers') {
       steps {
         parallel(
           "Shutdown Server1": {
@@ -16,10 +21,6 @@ pipeline {
             sh 'Shutdown server 3'
             
           },
-          "Confirm Start": {
-            input(message: 'Please confirm deployment', id: 'ConfirmDeployStart', ok: 'Yes?')
-            
-          }
         )
       }
     }
