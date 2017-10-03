@@ -26,12 +26,26 @@ pipeline {
     }
     stage('Deploy Bar Local') {
       steps {
-        sh 'Deploy Bar Locally'
+        sh 'echo "Deploy Bar Locally"'
       }
     }
     stage('Wait for Verification') {
       steps {
         input(message: 'Please Confirm Deployment is successfull', id: 'DeploySuccess', ok: 'Yes?')
+      }
+    }
+    stage('Deploy All') {
+      steps {
+        parallel(
+          "Deploy Test2": {
+            echo 'Deploy Test2'
+            
+          },
+          "Deploy Test3": {
+            echo 'Deploy TEST2'
+            
+          }
+        )
       }
     }
   }
