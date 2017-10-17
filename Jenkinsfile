@@ -9,10 +9,6 @@ pipeline {
     stage('Shutdown App Servers') {
       steps {
         parallel(
-          "Shutdown Server1": {
-            sh 'ssh -n gwadmin@mislnxnp014 "cd /data/csiapp/apacheupgrade/policycenter/test1 && ./tomcat.sh stop"'
-            
-          },
           "Shutdown Server2": {
             sh 'ssh -n gwadmin@mislnxnp014 "cd /data/csiapp/apacheupgrade/policycenter/test2 && ./tomcat.sh stop"'
             
