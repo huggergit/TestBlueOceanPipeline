@@ -44,5 +44,10 @@ pipeline {
         )
       }
     }
+    stage('PolicyAdminData Load') {
+      steps {
+        sh 'echo "Deploy Data"'
+      }
+    }
   }
 }
